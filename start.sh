@@ -133,10 +133,10 @@ if [ ! -z "${WINE_DEBUG}" ]; then
 fi
 
 if [ -z "${INSTANCE_ID}" ]; then
-    su -c "wine injectory.x86.exe --launch eldorado.exe --injectw customgames.dll --args -launcher -dedicated -window -height 200 -width 200 -minimized" $user
+    su -c "wine injectory.x86.exe --launch eldorado.exe --injectw customgames.dll --args "-launcher -dedicated -window -height 200 -width 200 -minimized"" $user
 else
     echo "Starting instance ${INSTANCE_ID}"
-    su -c "wine injectory.x86.exe --launch eldorado.exe --injectw customgames.dll --args -launcher -dedicated -window -height 200 -width 200 -minimized -instance ${INSTANCE_ID}" $user
+    su -c "wine injectory.x86.exe --launch eldorado.exe --injectw customgames.dll --args "-launcher -dedicated -window -height 200 -width 200 -minimized -instance ${INSTANCE_ID}"" $user
 fi
 
 if [ -z "${WAIT_ON_EXIT}" ]; then
