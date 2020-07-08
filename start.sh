@@ -134,10 +134,12 @@ fi
 
 if [ -z "${INSTANCE_ID}" ]; then
     su -c "wine eldorado.exe -launcher -dedicated -window -height 200 -width 200 -minimized" $user
+    sleep 30
     su -c "Injector.exe --process-name eldorado.exe --inject custgame.dll" $user
 else
     echo "Starting instance ${INSTANCE_ID}"
     su -c "wine eldorado.exe -launcher -dedicated -window -height 200 -width 200 -minimized -instance ${INSTANCE_ID}" $user
+    sleep 30
     su -c "wine Injector.exe --process-name eldorado.exe --inject custgame.dll" $user
 fi
 
