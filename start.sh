@@ -133,10 +133,10 @@ if [ ! -z "${WINE_DEBUG}" ]; then
 fi
 
 if [ -z "${INSTANCE_ID}" ]; then
-    wine injectory.x86.exe --launch eldorado.exe --injectw customgame.dll --args "-launcher -dedicated -window -height 200 -width 200 -minimized"
+    wine injectory.x86.exe --launch eldorado.exe --injectw customgame.dll --args \"-launcher -dedicated -window -height 200 -width 200 -minimized\"
 else
     echo "Starting instance ${INSTANCE_ID}"
-    wine injectory.x86.exe --launch eldorado.exe --injectw customgame.dll --args "-launcher -dedicated -window -height 200 -width 200 -minimized -instance ${INSTANCE_ID}" 
+    wine injectory.x86.exe --launch eldorado.exe --injectw customgame.dll --args \"-launcher -dedicated -window -height 200 -width 200 -minimized -instance ${INSTANCE_ID}\" 
 fi
 
 if [ -z "${WAIT_ON_EXIT}" ]; then
