@@ -125,7 +125,7 @@ Xvfb :1 -screen 0 320x240x24 &
 echo "${GREEN}Starting dedicated server${NC}"
 
 # DLL overrides for Wine are required to prevent issues with master server announcement
-export WINEDLLOVERRIDES="dsound=n,b;xinput1_3=n,b;winhttp,rasapi32=n"
+export WINEDLLOVERRIDES="xinput1_3=n,b;winhttp,rasapi32=n"
 
 if [ ! -z "${WINE_DEBUG}" ]; then
     echo "Setting wine to verbose output"
@@ -134,13 +134,9 @@ fi
 
 if [ -z "${INSTANCE_ID}" ]; then
     su -c "wine eldorado.exe -launcher -dedicated -window -height 200 -width 200 -minimized" $user
-    sleep 30
-    su -c "Injector.exe --process-name eldorado.exe --inject custgame.dll" $user
 else
     echo "Starting instance ${INSTANCE_ID}"
     su -c "wine eldorado.exe -launcher -dedicated -window -height 200 -width 200 -minimized -instance ${INSTANCE_ID}" $user
-    sleep 30
-    su -c "wine Injector.exe --process-name eldorado.exe --inject custgame.dll" $user
 fi
 
 if [ -z "${WAIT_ON_EXIT}" ]; then
