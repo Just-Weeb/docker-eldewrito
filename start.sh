@@ -125,7 +125,7 @@ Xvfb :1 -screen 0 320x240x24 &
 echo "${GREEN}Starting dedicated server${NC}"
 
 # DLL overrides for Wine are required to prevent issues with master server announcement
-export WINEDLLOVERRIDES="winhttp,rasapi32=n;xinput1_3=n"
+export WINEDLLOVERRIDES="dsound=n,b;xinput1_3=n,b;winhttp,rasapi32=n"
 
 if [ ! -z "${WINE_DEBUG}" ]; then
     echo "Setting wine to verbose output"
@@ -133,10 +133,10 @@ if [ ! -z "${WINE_DEBUG}" ]; then
 fi
 
 if [ -z "${INSTANCE_ID}" ]; then
-    su -c "wine injectory.x86.exe --launch eldorado.exe --injectw customgames.dll --args \"-launcher -dedicated -window -height 200 -width 200 -minimized\"" $user
+    wine injectory.x86.exe --launch eldorado.exe --injectw customgame.dll --args "-launcher -dedicated -window -height 200 -width 200 -minimized"
 else
     echo "Starting instance ${INSTANCE_ID}"
-    su -c "wine injectory.x86.exe --launch eldorado.exe --injectw customgames.dll --args \"-launcher -dedicated -window -height 200 -width 200 -minimized -instance ${INSTANCE_ID}\"" $user
+    wine injectory.x86.exe --launch eldorado.exe --injectw customgame.dll --args "-launcher -dedicated -window -height 200 -width 200 -minimized -instance ${INSTANCE_ID}" 
 fi
 
 if [ -z "${WAIT_ON_EXIT}" ]; then
@@ -144,4 +144,4 @@ if [ -z "${WAIT_ON_EXIT}" ]; then
 else
     echo "${RED}Server terminated, waiting${NC}"
     sleep infinity
-f
+fi
